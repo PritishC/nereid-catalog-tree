@@ -2,7 +2,7 @@
 """
 test_tree
 
-:copyright: (c) 2013-2014 by Openlabs Technologies & Consulting (P) Limited
+:copyright: (c) 2013-2015 by Openlabs Technologies & Consulting (P) Limited
 :license: BSD, see LICENSE for more details.
 """
 from decimal import Decimal
@@ -54,7 +54,6 @@ class TestTree(NereidTestCase):
             'uri': 'category-1'
         }])
 
-        url_map, = self.UrlMap.search([], limit=1)
         en_us, = self.Language.search([('code', '=', 'en_US')])
 
         self.locale_en_us, = self.Locale.create([{
@@ -69,7 +68,6 @@ class TestTree(NereidTestCase):
 
         self.Site.create([{
             'name': 'localhost',
-            'url_map': url_map.id,
             'company': company.id,
             'application_user': USER,
             'default_locale': self.locale_en_us.id,
@@ -88,7 +86,6 @@ class TestTree(NereidTestCase):
         self.Product = POOL.get('product.product')
         self.Company = POOL.get('company.company')
         self.NereidUser = POOL.get('nereid.user')
-        self.UrlMap = POOL.get('nereid.url_map')
         self.Language = POOL.get('ir.lang')
         self.Party = POOL.get('party.party')
         self.Category = POOL.get('product.category')
